@@ -1,0 +1,6 @@
+tweepy
+pandas
+s3fs
+env
+python-dotenv
+apache-airflow
