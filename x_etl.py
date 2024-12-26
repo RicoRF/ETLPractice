@@ -20,7 +20,7 @@ def run_x_etl(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET, 
     print(get_musk_tweet)
 
     tweets_list = []
-    for tweet in get_musk_tweet:
+    for tweet in get_musk_tweet.data:
         refined_tweet = {"id": tweet.id,
                         "text": tweet.text}
         tweets_list.append(refined_tweet)
