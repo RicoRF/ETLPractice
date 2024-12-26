@@ -5,7 +5,9 @@ from datetime import datetime
 import s3fs
 
 def run_x_etl(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET, BEARER_TOKEN):
-
+    if not all([CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET, BEARER_TOKEN]):
+        raise ValueError("One or more required environment variables are missing.")
+    
     # Setting up client object
     client = tweepy.Client(
         bearer_token=BEARER_TOKEN,

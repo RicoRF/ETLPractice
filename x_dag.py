@@ -33,13 +33,21 @@ default_args = {
 dag = DAG(
     'x_dag',
     default_args=default_args,
-    description="Test ETL using X"
+    description="Test ETL using X",
+    schedule_interval=timedelta(days=1)
 )
 
 # Define ETL task
 run_etl = PythonOperator(
     task_id="complete_x_etl",
-    python_callable=run_x_etl(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET, BEARER_TOKEN),
+    python_callable=run_x_etl,op_kwargs={
+        "CONSUMER_KEY": CONSUMER_KEY,
+        "CONSUMER_SECRET": CONSUMER_SECRET,
+        "ACCESS_TOKEN": ACCESS_TOKEN,
+        "ACCESS_TOKEN_SECRET": ACCESS_TOKEN_SECRET,
+        "BEARER_TOKEN": BEARER_TOKEN
+    },
+    execution_timeout=timedelta(minutes=5),
     dag=dag
 )
 
