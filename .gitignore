@@ -172,3 +172,6 @@ cython_debug/
 
 # OpenSSH files
 .pem
+
+# Mac files
+.DS_Store
